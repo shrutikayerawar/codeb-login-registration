@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: codeb-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: codeb_ims
+      MYSQL_USER: codeb_user
+      MYSQL_PASSWORD: local_dev_password
+      MYSQL_ROOT_PASSWORD: local_root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - codeb_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-plocal_root_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+volumes:
+  codeb_mysql_data:

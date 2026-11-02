@@ -1,0 +1,28 @@
+server:
+  port: ${PORT:8080}
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/codeb_ims?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:codeb_user}
+    password: ${DB_PASSWORD:local_dev_password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  mail:
+    host: ${MAIL_HOST:}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+app:
+  jwt:
+    secret: ${JWT_SECRET:local-only-change-this-secret-key-12345678901234567890}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000}
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  mail-enabled: ${MAIL_ENABLED:false}
